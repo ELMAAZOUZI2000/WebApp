@@ -1,0 +1,22 @@
+package com.example.tp4.dao;
+
+import java.io.Serializable;
+import java.util.List;
+
+import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.stereotype.Repository;
+
+import com.example.tp4.bean.FormuleProduitAssurance;
+
+@Repository
+public interface FormuleProduitAssuranceDao extends JpaRepository<FormuleProduitAssurance, Long>, Serializable {
+
+	FormuleProduitAssurance findByRef(String ref);
+
+	int deleteByRef(String ref);
+
+	List<FormuleProduitAssurance> findByRefLikeAndPrixGreaterThan(String ref, double prix); 
+	
+	List<FormuleProduitAssurance> findByReferenceProduitAssurance(String ref);
+	
+}
