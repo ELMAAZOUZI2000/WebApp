@@ -16,13 +16,13 @@ public class InscriptionAssuranceFormuleService {
 
 	@Autowired
 	private InscriptionAssuranceFormuleDao inscriptionAssuranceFormuleDao;
-	 
+
 	@Autowired
 	private InscAssuService inscAssuService;
-	
+
 	@Autowired
 	private FormuleProduitAssuranceService formuleProduitAssuranceService;
-	
+
 	public int deleteByInscAssuRef(String refInscAssu) {
 		return inscriptionAssuranceFormuleDao.deleteByInscAssuRef(refInscAssu);
 	}
@@ -30,7 +30,10 @@ public class InscriptionAssuranceFormuleService {
 	public List<InscriptionAssuranceFormule> findByInscAssuRef(String refInscAssu) {
 		return inscriptionAssuranceFormuleDao.findByInscAssuRef(refInscAssu);
 	}
-  
+
+	public int deleteByFormuleProduitAssuranceRef(String refFormuleProduitAssurance) {
+		return inscriptionAssuranceFormuleDao.deleteByFormuleProduitAssuranceRef(refFormuleProduitAssurance);
+	}
 
 	public InscriptionAssuranceFormule findByRef(String ref) {
 		return inscriptionAssuranceFormuleDao.findByRef(ref);
@@ -40,18 +43,17 @@ public class InscriptionAssuranceFormuleService {
 		return inscriptionAssuranceFormuleDao.deleteByRef(ref);
 	}
 
-
 	public int save(InscriptionAssuranceFormule inscriptionAssuranceFormule) {
 		if (findByRef(inscriptionAssuranceFormule.getRef()) != null) {
 			return -1;
 		}
-		InscAssu inscAssu = inscAssuService
-				.findByRef(inscriptionAssuranceFormule.getInscAssu().getRef());
-		FormuleProduitAssurance formuleProduitAssurance = formuleProduitAssuranceService.findByRef(inscriptionAssuranceFormule.getFormuleProduitAssurance().getRef());
-		
-		if (inscAssu == null || formuleProduitAssurance==null) {
+		InscAssu inscAssu = inscAssuService.findByRef(inscriptionAssuranceFormule.getInscAssu().getRef());
+		FormuleProduitAssurance formuleProduitAssurance = formuleProduitAssuranceService
+				.findByRef(inscriptionAssuranceFormule.getFormuleProduitAssurance().getRef());
+
+		if (inscAssu == null || formuleProduitAssurance == null) {
 			return -2;
-		} else{
+		} else {
 			inscriptionAssuranceFormule.setFormuleProduitAssurance(formuleProduitAssurance);
 			inscriptionAssuranceFormule.setInscAssu(inscAssu);
 			inscriptionAssuranceFormuleDao.save(inscriptionAssuranceFormule);
@@ -59,6 +61,7 @@ public class InscriptionAssuranceFormuleService {
 		}
 
 	}
+
 	public List<InscriptionAssuranceFormule> findAll() {
 		return inscriptionAssuranceFormuleDao.findAll();
 	}
@@ -74,7 +77,5 @@ public class InscriptionAssuranceFormuleService {
 	public List<InscriptionAssuranceFormule> findByFormuleProduitAssuranceProduitAssuranceRef(String ref) {
 		return inscriptionAssuranceFormuleDao.findByFormuleProduitAssuranceProduitAssuranceRef(ref);
 	}
-	
-	
-	
+
 }

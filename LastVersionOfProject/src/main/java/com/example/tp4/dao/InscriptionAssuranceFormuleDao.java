@@ -15,6 +15,8 @@ public interface InscriptionAssuranceFormuleDao extends JpaRepository<Inscriptio
 	int deleteByRef(String ref);
 
 	int deleteByInscAssuRef(String refInscAssu);
+	
+	int deleteByFormuleProduitAssuranceRef(String refFormuleProduitAssurance);
 
 	List<InscriptionAssuranceFormule> findByInscAssuRef(String refInscAssu);
 	

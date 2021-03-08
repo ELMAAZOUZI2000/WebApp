@@ -14,7 +14,7 @@ public interface FormuleProduitAssuranceDao extends JpaRepository<FormuleProduit
 
 	int deleteByRef(String ref);
 
-	int deleteByProduitAssuranceRef(String refProduit);
+	int deleteByProduitAssuranceRef(String Ref);
 
 	List<FormuleProduitAssurance> findByProduitAssuranceRef(String refProduit);
 

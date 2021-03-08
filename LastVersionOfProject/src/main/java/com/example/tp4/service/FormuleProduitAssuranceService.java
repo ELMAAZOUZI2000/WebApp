@@ -14,10 +14,16 @@ import com.example.tp4.dao.FormuleProduitAssuranceDao;
 public class FormuleProduitAssuranceService {
 
 	@Autowired
+	private FormuleProduitAssurance formuleProduitAssurance;
+
+	@Autowired
 	private FormuleProduitAssuranceDao formuleProduitAssuranceDao;
 
 	@Autowired
 	private ProduitAssuranceService produitAssuranceService;
+
+	@Autowired
+	private InscriptionAssuranceFormuleService inscriptionAssuranceFormuleService;
 
 	public List<FormuleProduitAssurance> findAll() {
 		return formuleProduitAssuranceDao.findAll();
@@ -32,6 +38,7 @@ public class FormuleProduitAssuranceService {
 		if (findByRef(ref) == null) {
 			return -1;
 		} else {
+			inscriptionAssuranceFormuleService.deleteByFormuleProduitAssuranceRef(ref);
 			formuleProduitAssuranceDao.deleteByRef(ref);
 			return 1;
 		}
@@ -46,7 +53,7 @@ public class FormuleProduitAssuranceService {
 
 		if (produitAssurance == null) {
 			return -2;
-		} else{
+		} else {
 			formuleProduitAssurance.setProduitAssurance(produitAssurance);
 			formuleProduitAssuranceDao.save(formuleProduitAssurance);
 			return 1;
@@ -55,19 +62,18 @@ public class FormuleProduitAssuranceService {
 	}
 
 	public int updateFormule(String ref, FormuleProduitAssurance formuleProduitAssurance) {
-		if(findByRef(ref)==null) {
+		if (findByRef(ref) == null) {
 			return -1;
-		}else {
+		} else {
 			formuleProduitAssuranceDao.save(formuleProduitAssurance);
 			return 1;
-		} 
+		}
 	}
-	
+
 	public List<FormuleProduitAssurance> findByProduitAssuranceRef(String refProduit) {
 		return formuleProduitAssuranceDao.findByProduitAssuranceRef(refProduit);
 	}
-	
-	
+
 	public int deleteByProduitAssuranceRef(String refProduit) {
 		return formuleProduitAssuranceDao.deleteByProduitAssuranceRef(refProduit);
 	}
@@ -79,8 +85,5 @@ public class FormuleProduitAssuranceService {
 	public FormuleProduitAssurance getOne(Long id) {
 		return formuleProduitAssuranceDao.getOne(id);
 	}
-
-	 
-	
 
 }
