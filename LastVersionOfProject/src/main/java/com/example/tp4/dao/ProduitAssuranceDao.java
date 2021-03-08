@@ -21,13 +21,3 @@ public interface ProduitAssuranceDao extends JpaRepository<ProduitAssurance, Lon
 
 
 
-
-
-
-
-
-
-
-/*@Query("FROM Adherent a,ProduitAssurance p,InscAssu i,InscriptionAssuranceFormule if,FormuleProduitAssurance fp WHERE "
-		+ "a.id=i.adherent AND i.id=if.inscAssu AND if.formuleProduitAssurance= fp.id AND fp.produitAssurance=p.id AND p.ref=:refProduit")
-List<Adherent> findAdherent(@Param("refProduit") String refProduit);*/
