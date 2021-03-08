@@ -9,7 +9,7 @@ import org.springframework.stereotype.Repository;
 import com.example.tp4.bean.FormuleProduitAssurance;
 
 @Repository
-public interface FormuleProduitAssuranceDao extends JpaRepository<FormuleProduitAssurance, Long>, Serializable {
+public interface FormuleProduitAssuranceDao extends JpaRepository<FormuleProduitAssurance, Long> {
 
 	FormuleProduitAssurance findByRef(String ref);
 
